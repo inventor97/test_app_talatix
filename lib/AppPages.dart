@@ -24,5 +24,10 @@ class AppPages {
       page: () => const AlbumsPage(),
       binding: AlbumsBinding(),
     ),
+    GetPage(
+      name: AppRoutes.COMMENTS,
+      page: () => const CommentsPage(),
+      binding: CommentsBinding(),
+    ),
   ];
 }

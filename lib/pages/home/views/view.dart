@@ -16,19 +16,20 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("test_app".tr, style: const TextStyle(color: Config.primaryColor, fontWeight: FontWeight.bold)),
-          leading: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset("assets/image/logo.png"),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                showSearch(context: context, delegate: SearchUsersDelegate(controller.storage.users.list?.value ?? []));
-              },
-              icon: const Icon(Icons.search_outlined, color: Config.primaryColor),
-            )
-          ]),
+        title: Text("test_app".tr, style: const TextStyle(color: Config.primaryColor, fontWeight: FontWeight.bold)),
+        leading: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Image.asset("assets/image/logo.png"),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: SearchUsersDelegate(controller.storage.users.list?.value ?? []));
+            },
+            icon: const Icon(Icons.search_outlined, color: Config.primaryColor),
+          )
+        ],
+      ),
       body: Obx(
         () => (controller.storage.users.list?.isNotEmpty ?? false) || controller.isLoading.value
             ? SmartRefresher(

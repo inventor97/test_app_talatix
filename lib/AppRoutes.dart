@@ -4,4 +4,5 @@ class AppRoutes {
   static const USER_DETAILED = '/user_details';
   static const POSTS = '/posts';
   static const ALBUMS = '/albums';
+  static const COMMENTS = '/comments';
 }

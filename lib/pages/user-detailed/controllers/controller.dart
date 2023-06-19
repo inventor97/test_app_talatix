@@ -92,7 +92,6 @@ class UserDetailedController extends BaseController {
     try {
       isUserAlbumsLoading.value = true;
 
-      storage.usersAlbums.list?.removeWhere((element) => element.userId == userId);
       storage.usersAlbums.addAll(await repo.getUserAlbums(userId));
     } catch (e) {
       Logger().e(e);

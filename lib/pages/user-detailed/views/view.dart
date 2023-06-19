@@ -272,7 +272,7 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
                               if ((List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId))
-                                      .isNotEmpty) ||
+                                      .isEmpty) ||
                                   controller.isUserPostsLoading.value) {
                                 return Shimmer.fromColors(
                                   baseColor: Config.shimmerColor,
