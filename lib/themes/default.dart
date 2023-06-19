@@ -8,6 +8,7 @@ var kDefaultTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     color: Colors.white,
     centerTitle: true,
+    titleTextStyle: TextStyle(fontSize: 18, fontFamily: "Montserrat"),
     iconTheme: IconThemeData(
       color: Config.primaryColor,
     ),

@@ -8,6 +8,7 @@ class UserInfoModel extends Storable<UserInfoModel> {
   final Address? address;
   final String? phone;
   final String? website;
+  final String? heroTag;
   final Company? company;
 
   UserInfoModel({
@@ -19,29 +20,30 @@ class UserInfoModel extends Storable<UserInfoModel> {
     this.phone,
     this.website,
     this.company,
+    this.heroTag,
   });
 
   factory UserInfoModel.fromJson(Map<String, dynamic> json) => UserInfoModel(
-    id: json["id"],
-    name: json["name"],
-    username: json["username"],
-    email: json["email"],
-    address: json["address"] == null ? null : Address.fromJson(json["address"]),
-    phone: json["phone"],
-    website: json["website"],
-    company: json["company"] == null ? null : Company.fromJson(json["company"]),
-  );
+        id: json["id"],
+        name: json["name"],
+        username: json["username"],
+        email: json["email"],
+        address: json["address"] == null ? null : Address.fromJson(json["address"]),
+        phone: json["phone"],
+        website: json["website"],
+        company: json["company"] == null ? null : Company.fromJson(json["company"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "name": name,
-    "username": username,
-    "email": email,
-    "address": address?.toJson(),
-    "phone": phone,
-    "website": website,
-    "company": company?.toJson(),
-  };
+        "id": id,
+        "name": name,
+        "username": username,
+        "email": email,
+        "address": address?.toJson(),
+        "phone": phone,
+        "website": website,
+        "company": company?.toJson(),
+      };
 
   @override
   UserInfoModel fromStoreJson(Map<String, dynamic> json) {
@@ -70,20 +72,20 @@ class Address {
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-    street: json["street"],
-    suite: json["suite"],
-    city: json["city"],
-    zipcode: json["zipcode"],
-    geo: json["geo"] == null ? null : Geo.fromJson(json["geo"]),
-  );
+        street: json["street"],
+        suite: json["suite"],
+        city: json["city"],
+        zipcode: json["zipcode"],
+        geo: json["geo"] == null ? null : Geo.fromJson(json["geo"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "street": street,
-    "suite": suite,
-    "city": city,
-    "zipcode": zipcode,
-    "geo": geo?.toJson(),
-  };
+        "street": street,
+        "suite": suite,
+        "city": city,
+        "zipcode": zipcode,
+        "geo": geo?.toJson(),
+      };
 }
 
 class Geo {
@@ -96,14 +98,14 @@ class Geo {
   });
 
   factory Geo.fromJson(Map<String, dynamic> json) => Geo(
-    lat: json["lat"],
-    lng: json["lng"],
-  );
+        lat: json["lat"],
+        lng: json["lng"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "lat": lat,
-    "lng": lng,
-  };
+        "lat": lat,
+        "lng": lng,
+      };
 }
 
 class Company {
@@ -118,14 +120,14 @@ class Company {
   });
 
   factory Company.fromJson(Map<String, dynamic> json) => Company(
-    name: json["name"],
-    catchPhrase: json["catchPhrase"],
-    bs: json["bs"],
-  );
+        name: json["name"],
+        catchPhrase: json["catchPhrase"],
+        bs: json["bs"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "name": name,
-    "catchPhrase": catchPhrase,
-    "bs": bs,
-  };
+        "name": name,
+        "catchPhrase": catchPhrase,
+        "bs": bs,
+      };
 }

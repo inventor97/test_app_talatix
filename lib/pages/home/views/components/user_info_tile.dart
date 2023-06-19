@@ -35,7 +35,6 @@ class UserInfoTile extends StatelessWidget {
                   title: "phone".tr,
                   icon: Icons.phone_enabled_rounded,
                   value: user.phone ?? "no_data".tr,
-                  onTap: () => launchUrl(Uri.parse("tel://${user.phone}"), mode: LaunchMode.externalApplication),
                   isTitleCenter: false,
                 ),
               ),
@@ -43,9 +42,11 @@ class UserInfoTile extends StatelessWidget {
                 child: LabeledText(
                   title: "email".tr,
                   icon: Icons.mail_outline_rounded,
-                  valueChild:
-                      Text(user.email ?? "no_data".tr, style: const TextStyle(color: Config.primaryColor, decoration: TextDecoration.underline)),
-                  onTap: () => launchUrl(Uri.parse("mailto://${user.email}"), mode: LaunchMode.externalApplication),
+                  valueChild: Text(
+                    user.email ?? "no_data".tr,
+                    style: const TextStyle(color: Config.primaryColor, decoration: TextDecoration.underline),
+                    textAlign: TextAlign.end,
+                  ),
                   isContentRight2Left: false,
                 ),
               ),

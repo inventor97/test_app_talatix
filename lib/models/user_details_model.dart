@@ -1,4 +1,6 @@
-class UserTodosModel {
+import 'package:test_app_talatix/models/_storable.dart';
+
+class UserTodosModel extends Storable<UserTodosModel> {
   final int? userId;
   final int? id;
   final String? title;
@@ -12,21 +14,31 @@ class UserTodosModel {
   });
 
   factory UserTodosModel.fromJson(Map<String, dynamic> json) => UserTodosModel(
-    userId: json["userId"],
-    id: json["id"],
-    title: json["title"],
-    completed: json["completed"],
-  );
+        userId: json["userId"],
+        id: json["id"],
+        title: json["title"],
+        completed: json["completed"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "id": id,
-    "title": title,
-    "completed": completed,
-  };
+        "userId": userId,
+        "id": id,
+        "title": title,
+        "completed": completed,
+      };
+
+  @override
+  UserTodosModel fromStoreJson(Map<String, dynamic> json) {
+    return UserTodosModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toStoreJson() {
+    return toJson();
+  }
 }
 
-class UserAlbumsModel {
+class UserAlbumsModel extends Storable<UserAlbumsModel> {
   final int? userId;
   final int? id;
   final String? title;
@@ -38,19 +50,29 @@ class UserAlbumsModel {
   });
 
   factory UserAlbumsModel.fromJson(Map<String, dynamic> json) => UserAlbumsModel(
-    userId: json["userId"],
-    id: json["id"],
-    title: json["title"],
-  );
+        userId: json["userId"],
+        id: json["id"],
+        title: json["title"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "id": id,
-    "title": title,
-  };
+        "userId": userId,
+        "id": id,
+        "title": title,
+      };
+
+  @override
+  UserAlbumsModel fromStoreJson(Map<String, dynamic> json) {
+    return UserAlbumsModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toStoreJson() {
+    return toJson();
+  }
 }
 
-class UserPostsModel {
+class UserPostsModel extends Storable<UserPostsModel> {
   final int? userId;
   final int? id;
   final String? title;
@@ -64,18 +86,28 @@ class UserPostsModel {
   });
 
   factory UserPostsModel.fromJson(Map<String, dynamic> json) => UserPostsModel(
-    userId: json["userId"],
-    id: json["id"],
-    title: json["title"],
-    body: json["body"],
-  );
+        userId: json["userId"],
+        id: json["id"],
+        title: json["title"],
+        body: json["body"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "userId": userId,
-    "id": id,
-    "title": title,
-    "body": body,
-  };
+        "userId": userId,
+        "id": id,
+        "title": title,
+        "body": body,
+      };
+
+  @override
+  UserPostsModel fromStoreJson(Map<String, dynamic> json) {
+    return UserPostsModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toStoreJson() {
+    return toJson();
+  }
 }
 
 class PhotosModel {
@@ -94,20 +126,20 @@ class PhotosModel {
   });
 
   factory PhotosModel.fromJson(Map<String, dynamic> json) => PhotosModel(
-    albumId: json["albumId"],
-    id: json["id"],
-    title: json["title"],
-    url: json["url"],
-    thumbnailUrl: json["thumbnailUrl"],
-  );
+        albumId: json["albumId"],
+        id: json["id"],
+        title: json["title"],
+        url: json["url"],
+        thumbnailUrl: json["thumbnailUrl"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "albumId": albumId,
-    "id": id,
-    "title": title,
-    "url": url,
-    "thumbnailUrl": thumbnailUrl,
-  };
+        "albumId": albumId,
+        "id": id,
+        "title": title,
+        "url": url,
+        "thumbnailUrl": thumbnailUrl,
+      };
 }
 
 class CommentsModel {
@@ -126,18 +158,18 @@ class CommentsModel {
   });
 
   factory CommentsModel.fromJson(Map<String, dynamic> json) => CommentsModel(
-    postId: json["postId"],
-    id: json["id"],
-    name: json["name"],
-    email: json["email"],
-    body: json["body"],
-  );
+        postId: json["postId"],
+        id: json["id"],
+        name: json["name"],
+        email: json["email"],
+        body: json["body"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "postId": postId,
-    "id": id,
-    "name": name,
-    "email": email,
-    "body": body,
-  };
+        "postId": postId,
+        "id": id,
+        "name": name,
+        "email": email,
+        "body": body,
+      };
 }

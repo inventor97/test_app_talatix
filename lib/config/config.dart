@@ -23,6 +23,8 @@ class Config {
   static const String domain = 'https://jsonplaceholder.typicode.com/';
   static const String yandexNavigatorAppId = "ru.yandex.yandexnavi";
   static const String yandexNavigatorIOSAppId = "474500851";
+
+
   //constant values
   static const double borderRadius = 10;
 }

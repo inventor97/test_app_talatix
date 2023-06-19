@@ -12,7 +12,7 @@ class AppPages {
     GetPage(
       name: AppRoutes.USER_DETAILED,
       page: () => const UserDetailedPage(),
-      binding: HomeBinding(),
+      binding: UserDetailedBinding(),
     ),
     GetPage(
       name: AppRoutes.POSTS,

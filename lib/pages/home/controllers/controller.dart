@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -11,6 +13,8 @@ import '../../_base_controller.dart';
 class HomeController extends BaseController {
   final storage = Get.find<StorageService>();
   final connectivity = Get.find<ConnectivityService>();
+  late StreamSubscription connectivitySubscription;
+
 
   final repo = UserInfoRepository();
 
@@ -20,6 +24,18 @@ class HomeController extends BaseController {
   void onInit() {
     super.onInit();
     syncUsers();
+
+    connectivitySubscription = connectivity.isConnect.listen((value) {
+      if (value) {
+        syncUsers();
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    connectivitySubscription.cancel();
+    super.onClose();
   }
 
   void syncUsers({bool isRefreshing = false}) async {
