@@ -1,4 +1,6 @@
-class UserInfoModel {
+import 'package:test_app_talatix/models/_storable.dart';
+
+class UserInfoModel extends Storable<UserInfoModel> {
   final int? id;
   final String? name;
   final String? username;
@@ -40,6 +42,16 @@ class UserInfoModel {
     "website": website,
     "company": company?.toJson(),
   };
+
+  @override
+  UserInfoModel fromStoreJson(Map<String, dynamic> json) {
+    return UserInfoModel.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toStoreJson() {
+    return toJson();
+  }
 }
 
 class Address {

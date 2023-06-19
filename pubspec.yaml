@@ -19,6 +19,9 @@ dependencies:
   connectivity_plus: ^4.0.1
   encrypt: ^5.0.1
   shimmer: ^3.0.0
+  pull_to_refresh: ^2.0.0
+  flutter_svg: ^2.0.5
+  url_launcher: ^6.1.11
 
 dev_dependencies:
   flutter_test:
@@ -30,7 +33,7 @@ flutter:
 
 
   assets:
-    - assets/png/
+    - assets/image/
     - assets/svg/
     - assets/fonts/
     - assets/rive/
