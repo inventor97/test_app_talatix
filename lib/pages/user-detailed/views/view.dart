@@ -271,7 +271,9 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              if (controller.isUserPostsLoading.value) {
+                              if ((List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId))
+                                      .isNotEmpty) ||
+                                  controller.isUserPostsLoading.value) {
                                 return Shimmer.fromColors(
                                   baseColor: Config.shimmerColor,
                                   highlightColor: Colors.transparent,
@@ -304,7 +306,15 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                           Align(
                             alignment: Alignment.topRight,
                             child: GestureDetector(
-                              onTap: () => Get.toNamed(AppRoutes.POSTS),
+                              onTap: () => Get.toNamed(
+                                AppRoutes.POSTS,
+                                arguments: {
+                                  "username": controller.user.username,
+                                  "user_id": controller.user.id,
+                                  "posts": List<UserPostsModel>.from(
+                                      controller.storage.usersPosts.list!.where((item) => item.userId == controller.userId)),
+                                },
+                              ),
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 8.0),
                                 child: Row(

@@ -32,6 +32,18 @@ class AlbumsController extends BaseController {
     userId = Get.arguments['user_id'];
 
     _sync();
+
+    connectivitySubscription = connectivity.isConnect.listen((connection) {
+      if (connection) {
+        _sync();
+      }
+    });
+  }
+
+  @override
+  void onClose() {
+    connectivitySubscription.cancel();
+    super.onClose();
   }
 
   void _sync() async {
