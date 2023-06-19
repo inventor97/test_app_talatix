@@ -1,3 +1,4 @@
+import 'package:get/get.dart';
 import 'package:test_app_talatix/models/_storable.dart';
 
 class UserTodosModel extends Storable<UserTodosModel> {
@@ -42,12 +43,16 @@ class UserAlbumsModel extends Storable<UserAlbumsModel> {
   final int? userId;
   final int? id;
   final String? title;
+  RxBool? isLoading;
 
   UserAlbumsModel({
     this.userId,
     this.id,
     this.title,
-  });
+    this.isLoading,
+  }) {
+    isLoading = false.obs;
+  }
 
   factory UserAlbumsModel.fromJson(Map<String, dynamic> json) => UserAlbumsModel(
         userId: json["userId"],

@@ -9,6 +9,7 @@ import 'package:test_app_talatix/models/user_info_model.dart';
 import '_base_storage.dart';
 
 class StorageService extends BaseStorageService {
+
   //storable data
   late StorableCoreTypeModel<String> lang = StorableCoreTypeModel(key: _fieldActiveLang);
   late StorableTypeModel<UserInfoModel> users = StorableTypeModel(key: _fieldUsersInfo, typeClass: UserInfoModel());
@@ -17,6 +18,8 @@ class StorageService extends BaseStorageService {
   late StorableTypeModel<UserTodosModel> usersToDos = StorableTypeModel(key: _fieldUsersToDos, typeClass: UserTodosModel());
 
   //non-storable data
+  final photos = <int, Map<int, List<PhotosModel>>>{}.obs;
+  final comments = <int, Map<int, List<CommentsModel>>>{}.obs;
 
   @override
   void onInit() {

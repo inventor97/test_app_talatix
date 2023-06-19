@@ -32,7 +32,7 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      constraints: constraints ?? const BoxConstraints(maxWidth: 450),
+      constraints: constraints,
       duration: const Duration(milliseconds: 400),
       width: width,
       height: height,

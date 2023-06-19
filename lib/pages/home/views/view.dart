@@ -6,7 +6,7 @@ import 'package:test_app_talatix/helpers/pull_to_refresh_classic_header.dart';
 import 'package:test_app_talatix/pages/home/views/components/search_user_delegate.dart';
 import 'package:test_app_talatix/pages/home/views/components/user_info_tile.dart';
 import 'package:test_app_talatix/widgets/error_component.dart';
-import 'package:test_app_talatix/widgets/shimmer_widgets/InfoTileShimmer.dart';
+import 'package:test_app_talatix/widgets/shimmer_widgets/info_tile_shimmer.dart';
 import '../controllers/controller.dart';
 
 class HomePage extends GetView<HomeController> {

@@ -41,7 +41,7 @@ class UserDetailedController extends BaseController {
 
   @override
   void onClose() {
-    _sync();
+    connectivitySubscription.cancel();
     super.onClose();
   }
 
@@ -65,7 +65,7 @@ class UserDetailedController extends BaseController {
     try {
       isUserPostsLoading.value = true;
 
-      storage.usersPosts.store = await repo.getUserPosts(userId);
+      storage.usersPosts.addAll(await repo.getUserPosts(userId));
     } catch (e) {
       Logger().e(e);
       if (e.toString().contains("host") || e.toString().contains("connection")) {
@@ -92,7 +92,8 @@ class UserDetailedController extends BaseController {
     try {
       isUserAlbumsLoading.value = true;
 
-      storage.usersAlbums.store = await repo.getUserAlbums(userId);
+      storage.usersAlbums.list?.removeWhere((element) => element.userId == userId);
+      storage.usersAlbums.addAll(await repo.getUserAlbums(userId));
     } catch (e) {
       Logger().e(e);
       if (e.toString().contains("host") || e.toString().contains("connection")) {

@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:test_app_talatix/AppRoutes.dart';
 import 'package:test_app_talatix/config/config.dart';
 import 'package:test_app_talatix/helpers/helper.dart';
 import 'package:test_app_talatix/models/user_details_model.dart';
@@ -181,18 +182,20 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                 padding: const EdgeInsets.only(top: 15.0, bottom: 5.0),
                 child: Text("user_albums_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
-              controller.storage.usersAlbums.list != null ||
-                      (List.from(controller.storage.usersAlbums.list!.where((item) => item.userId == controller.userId)).isNotEmpty) &&
-                          controller.isUserAlbumsLoading.value
-                  ? Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListView.builder(
+              Obx(
+                () => controller.storage.usersAlbums.list?.value != null ||
+                        (List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                        controller.isUserAlbumsLoading.value
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              if (controller.isUserAlbumsLoading.value) {
+                              if ((List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isEmpty) ||
+                                  controller.isUserAlbumsLoading.value) {
                                 return Shimmer.fromColors(
                                   baseColor: Config.shimmerColor,
                                   highlightColor: Colors.transparent,
@@ -214,46 +217,57 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                                 );
                               }
                             },
-                            itemCount: 3),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("more".tr, style: const TextStyle(color: Config.grayTextColor)),
-                                const Icon(Icons.chevron_right_outlined, color: Config.grayTextColor),
-                              ],
-                            ),
+                            itemCount: 3,
                           ),
-                        )
-                      ],
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      child: controller.connectivity.isConnect.value
-                          ? ErrorComponent(
-                              label: "not_found".tr,
-                              icon: Icons.playlist_remove_outlined,
-                            )
-                          : ErrorComponent(
-                              label: "connection_error".tr,
-                              callback: controller.syncUsersAlbums,
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () => Get.toNamed(AppRoutes.ALBUMS, arguments: {
+                                "username": controller.user.username,
+                                "user_id": controller.user.id,
+                                "albums": List<UserAlbumsModel>.from(
+                                    controller.storage.usersAlbums.list!.where((item) => item.userId == controller.userId)),
+                              }),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("more".tr, style: const TextStyle(color: Config.grayTextColor)),
+                                    const Icon(Icons.chevron_right_outlined, color: Config.grayTextColor),
+                                  ],
+                                ),
+                              ),
                             ),
-                    ),
+                          )
+                        ],
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15.0),
+                        child: controller.connectivity.isConnect.value
+                            ? ErrorComponent(
+                                label: "not_found".tr,
+                                icon: Icons.playlist_remove_outlined,
+                              )
+                            : ErrorComponent(
+                                label: "connection_error".tr,
+                                callback: controller.syncUsersAlbums,
+                              ),
+                      ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 15.0, bottom: 5.0),
                 child: Text("user_posts_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
-              controller.storage.usersPosts.list != null ||
-                      (List.from(controller.storage.usersPosts.list!.where((item) => item.userId == controller.userId)).isNotEmpty) &&
-                          controller.isUserPostsLoading.value
-                  ? Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ListView.builder(
+              Obx(
+                () => controller.storage.usersPosts.list?.value != null ||
+                        (List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                        controller.isUserPostsLoading.value
+                    ? Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
@@ -285,34 +299,39 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                                 );
                               }
                             },
-                            itemCount: 3),
-                        Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text("more".tr, style: const TextStyle(color: Config.grayTextColor)),
-                                const Icon(Icons.chevron_right_outlined, color: Config.grayTextColor),
-                              ],
-                            ),
+                            itemCount: 3,
                           ),
-                        )
-                      ],
-                    )
-                  : Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15.0),
-                      child: controller.connectivity.isConnect.value
-                          ? ErrorComponent(
-                              label: "not_found".tr,
-                              icon: Icons.playlist_remove_outlined,
-                            )
-                          : ErrorComponent(
-                              label: "connection_error".tr,
-                              callback: controller.syncUsersAlbums,
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () => Get.toNamed(AppRoutes.POSTS),
+                              child: Padding(
+                                padding: const EdgeInsets.only(top: 8.0),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text("more".tr, style: const TextStyle(color: Config.grayTextColor)),
+                                    const Icon(Icons.chevron_right_outlined, color: Config.grayTextColor),
+                                  ],
+                                ),
+                              ),
                             ),
-                    )
+                          )
+                        ],
+                      )
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15.0),
+                        child: controller.connectivity.isConnect.value
+                            ? ErrorComponent(
+                                label: "not_found".tr,
+                                icon: Icons.playlist_remove_outlined,
+                              )
+                            : ErrorComponent(
+                                label: "connection_error".tr,
+                                callback: controller.syncUsersPosts,
+                              ),
+                      ),
+              ),
             ],
           ),
         ),

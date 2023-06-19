@@ -49,7 +49,7 @@ class UserInfoRepository extends BaseRepository {
   }
 
   Future<List<PhotosModel>> getPhotos(int albumId) async {
-    Response response = await makeHttpRequest("phptos?albumId=$albumId", {});
+    Response response = await makeHttpRequest("photos?albumId=$albumId", {});
 
     if (response.statusCode == 200) {
       final parsed = await jsonDecode(utf8.decode(response.bodyBytes));
