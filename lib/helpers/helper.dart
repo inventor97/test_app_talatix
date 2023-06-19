@@ -8,6 +8,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class GeneralHelper {
 
+  static String? inputValidator(value) {
+    if (value == null || value.isEmpty) {
+      return 'required_field'.tr;
+    }
+    return null;
+  }
+
   static showAlertMessage(String title, String message, {bool isSuccessMessage = true}) {
     Get.snackbar(
       title,

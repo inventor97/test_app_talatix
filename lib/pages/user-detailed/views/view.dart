@@ -183,8 +183,8 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                 child: Text("user_albums_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
               Obx(
-                () => controller.storage.usersAlbums.list?.value != null ||
-                        (List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                () => (controller.storage.usersAlbums.list?.value != null &&
+                            (List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty)) ||
                         controller.isUserAlbumsLoading.value
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
@@ -260,8 +260,8 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                 child: Text("user_posts_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
               Obx(
-                () => controller.storage.usersPosts.list?.value != null ||
-                        (List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                () => (controller.storage.usersPosts.list?.value != null &&
+                            (List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty)) ||
                         controller.isUserPostsLoading.value
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
@@ -271,8 +271,7 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              if ((List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId))
-                                      .isEmpty) ||
+                              if ((List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isEmpty) ||
                                   controller.isUserPostsLoading.value) {
                                 return Shimmer.fromColors(
                                   baseColor: Config.shimmerColor,

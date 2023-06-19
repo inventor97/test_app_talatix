@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:test_app_talatix/enums/HttpMethods.dart';
 import 'package:test_app_talatix/models/user_details_model.dart';
 import 'package:test_app_talatix/models/user_info_model.dart';
 import 'package:test_app_talatix/repositories/_base_repo.dart';
@@ -66,5 +67,24 @@ class UserInfoRepository extends BaseRepository {
       return List<CommentsModel>.from(parsed?.map((e) => CommentsModel.fromJson(e)) ?? []);
     }
     throw ("Error");
+  }
+
+  Future<CommentsModel> sendComment(String name, String body, String email, int postId) async {
+    Response response = await makeHttpRequest(
+        "comments",
+        {
+          "name": name,
+          "body": body,
+          "email": email,
+          "postId": postId,
+        },
+        method: HttpMethodTypes.POST);
+
+    if(response.statusCode == 201) {
+      final parsed = await jsonDecode(utf8.decode(response.bodyBytes));
+      return CommentsModel.fromJson(parsed);
+    }
+    throw("Error");
+
   }
 }
