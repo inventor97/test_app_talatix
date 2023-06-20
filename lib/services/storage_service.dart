@@ -25,6 +25,8 @@ class StorageService extends BaseStorageService {
   void onInit() {
     super.onInit();
     if (lang.data == null) lang.store = Messages.defaultLang.toString();
+    if(usersPosts.list == null) usersPosts.store = <UserPostsModel>[];
+    if(usersAlbums.list == null) usersAlbums.store = <UserAlbumsModel>[];
   }
 
   void changeLanguage(String language) {

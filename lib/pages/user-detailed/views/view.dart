@@ -183,9 +183,8 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                 child: Text("user_albums_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
               Obx(
-                () => (controller.storage.usersAlbums.list?.value != null &&
-                            (List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty)) ||
-                        controller.isUserAlbumsLoading.value
+                () => ((List.from(controller.storage.usersAlbums.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                        controller.isUserAlbumsLoading.value)
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,9 +259,8 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                 child: Text("user_posts_info".tr, style: const TextStyle(color: Config.primaryColor, fontSize: 16.0)),
               ),
               Obx(
-                () => (controller.storage.usersPosts.list?.value != null &&
-                            (List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty)) ||
-                        controller.isUserPostsLoading.value
+                () => ((List.from(controller.storage.usersPosts.list!.value.where((item) => item.userId == controller.userId)).isNotEmpty) ||
+                        controller.isUserPostsLoading.value)
                     ? Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
