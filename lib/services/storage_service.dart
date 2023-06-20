@@ -27,8 +27,9 @@ class StorageService extends BaseStorageService {
     if (lang.data == null) lang.store = Messages.defaultLang.toString();
   }
 
-  void changeLanguage(String lang) {
-    Get.updateLocale(Locale(lang));
+  void changeLanguage(String language) {
+    lang.store = language;
+    Get.updateLocale(Locale(language));
   }
 
   void clearAllData() {

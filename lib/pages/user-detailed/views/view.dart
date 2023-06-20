@@ -110,7 +110,7 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                     )
                   : Container(),
               InfoItem(
-                margin: EdgeInsets.symmetric(vertical: 5.0),
+                margin: const EdgeInsets.symmetric(vertical: 5.0),
                 title: "user_contacts_info".tr,
                 content: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -152,7 +152,7 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                           child: LabeledText(
                             title: "email".tr,
                             valueChild: GestureDetector(
-                              onTap: () => launchUrl(Uri.parse("mailto://${controller.user.email}"), mode: LaunchMode.externalApplication),
+                              onTap: () => launchUrl(Uri.parse("mailto:${controller.user.email}"), mode: LaunchMode.externalApplication),
                               child: Text(
                                 controller.user.email ?? "no_data".tr,
                                 style: const TextStyle(color: Config.primaryColor, decoration: TextDecoration.underline),
@@ -162,7 +162,7 @@ class UserDetailedPage extends GetView<UserDetailedController> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => launchUrl(Uri.parse("mailto://${controller.user.email}"), mode: LaunchMode.externalApplication),
+                          onTap: () => launchUrl(Uri.parse("mailto:${controller.user.email}"), mode: LaunchMode.externalApplication),
                           child: Container(
                             width: 30,
                             height: 30,

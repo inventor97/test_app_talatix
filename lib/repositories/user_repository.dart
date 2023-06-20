@@ -7,6 +7,7 @@ import 'package:test_app_talatix/models/user_info_model.dart';
 import 'package:test_app_talatix/repositories/_base_repo.dart';
 
 class UserInfoRepository extends BaseRepository {
+
   Future<List<UserInfoModel>> getUsers() async {
     Response response = await makeHttpRequest("users", {});
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_app_talatix/models/models.dart';
 
 class Config {
   static const Color primaryColor = Color(0xFF0068E0);
@@ -17,6 +18,11 @@ class Config {
       offset: Offset(0, 0),
       blurRadius: 10,
     ),
+  ];
+
+  static List<LanguageModel> languages = [
+    LanguageModel(langValue: "en", label: "Enlish", shortLabel: "Eng"),
+    LanguageModel(langValue: "ru", label: "Русский", shortLabel: "Рус"),
   ];
 
   //strings
