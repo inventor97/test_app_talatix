@@ -47,7 +47,9 @@ class PostsPage extends GetView<PostsController> {
                 child: ListView.builder(
                   shrinkWrap: true,
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  itemCount: List.from(controller.storage.usersPosts.list!.where((element) => element.userId == controller.userId)).length,
+                  itemCount: controller.isLoading.value
+                      ? 10
+                      : List.from(controller.storage.usersPosts.list!.where((element) => element.userId == controller.userId)).length,
                   physics: controller.isLoading.value ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
                   itemBuilder: (context, index) {
                     if (controller.isLoading.value) {
